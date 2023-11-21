@@ -1,0 +1,19 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+
+/* body { */
+  /* background-color: rgb(0, 0, 0); */
+
+  /* leave it to hide the scrollbars */
+  /* overflow: hidden; */
+  /* margin: 0; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* display: flex; */
+/* } */
