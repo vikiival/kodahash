@@ -59,7 +59,7 @@ On the snippet below you can see how to set canvas size to 1:1 ratio.
 It will use smaller dimension of the screen (either width or height) as a canvas size.
 
 ```js
-canvasSize = windowWidth < windowHeight ? windowWidth : windowHeight
+canvasSize = Math.min(windowWidth, windowHeight);
 
 createCanvas(canvasSize, canvasSize);
 ```
