@@ -16,6 +16,7 @@ function setup() {
 
   seed = hashToSeed(hash)
   randomSeed(seed) // ART is deterministic now
+  noiseSeed(seed) // Perlin noise too  
   console.log(hash, seed)
 
   // using random to generate a random color
