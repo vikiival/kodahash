@@ -49,18 +49,44 @@ function hashToSeed(hash) {
   return _seed
 }
 
+function extractCanvasDetails(canvas) {
+  const ctx = canvas.getContext("2d");
+
+  const details = {
+    width: canvas.width,        
+    height: canvas.height,      
+    pixelDensity: window.devicePixelRatio, 
+    fillStyle: ctx.fillStyle,   
+    strokeStyle: ctx.strokeStyle, 
+    lineWidth: ctx.lineWidth,   
+    globalAlpha: ctx.globalAlpha, 
+    globalCompositeOperation: ctx.globalCompositeOperation, 
+    transform: ctx.getTransform(), 
+  };
+
+
+  // Compute base64 representation of the details
+  const base64Details = btoa(JSON.stringify(details));
+
+  return { details, base64Details };
+}
+
 function postMessageKoda() {
   console.log('Talking')
   const canvas = document.querySelector('canvas')
+const { details, base64Details } = extractCanvasDetails(canvas);
   const message = {
     id: Date.now(),
     type: 'kodahash/render/completed',
     payload: {
+      version: "1.0",
       hash: hash,
       type: 'image/png',
       image: canvas ? canvas.toDataURL('image/png') : null,
       search: location.search,
-      attributes: [],
+      attributes: details,
+      base64Details,
+      seed
     },
   }
   console.log('Sending', message)
