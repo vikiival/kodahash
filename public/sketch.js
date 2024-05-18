@@ -76,7 +76,7 @@ function postMessageKoda() {
   const canvas = document.querySelector('canvas')
 const { details, base64Details } = extractCanvasDetails(canvas);
   const message = {
-    id: Date.now(),
+    id: seed,
     type: 'kodahash/render/completed',
     payload: {
       version: "1.0",
@@ -86,7 +86,6 @@ const { details, base64Details } = extractCanvasDetails(canvas);
       search: location.search,
       attributes: details,
       base64Details,
-      seed
     },
   }
   console.log('Sending', message)
